@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="true" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="css/media.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/massive-menu.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" href="css/demo.css">
+<link href='https://fonts.googleapis.com/css?family=PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/custom.js"></script>
+<!-- <script src="js/slick.js"></script> -->
+<script src="js/jquery.cookie.js"></script>
+<script src="js/jquery.sticky-kit.min.js"></script>
+<script src="js/jquery.custom-scroll.js"></script>
+<script src="js/massive-menu.js"></script>
+<title>Artel Troika - Emotion Open</title>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(window).on({
+        'load':function() {
+            stickyAffix();
+            stickyMap();
+        },
+        'scroll':function() {
+            var top = $(this).scrollTop();
+            if(top > 1) {
+                $(".mm-container").addClass('scrolled');
+            } 
+            else {
+                $(".mm-container").removeClass('scrolled');
+            }
+        }
+    });
+
+$(window).scroll(function(){
+    var params = new Object();
+    params.docH = $(document).height();
+    params.winH = $(window).height();
+    params.scrollTop = $(this).scrollTop();
+    params.checkSum = params.scrollTop + params.winH;
+    if(parseInt(params.scrollTop) > 0){
+        $('#upLine').slideUp('fast');
+    }else{
+        $('#upLine').slideDown('fast');
+    }
+});
+
+function Autoscroll(param){
+    var w = $(window).width();
+    var mm_nav_h;
+    $('body,html').animate({ scrollTop: $(param).offset().top - 100}, 1000); // анимируем скроолинг к элементу scroll_el
+}
+
+function OpenMenu(){
+    $(".mm-mobile-menu").slideDown(300);
+    setTimeout(function(){
+        $("body").addClass('mm-fixed-body');
+        $(".mm-open-icon").addClass('active');
+        $('#logoImg').slideUp('fast');
+        $('.top-help-block').css({display: 'none'});
+        $('#langButton2').css({display: 'block'});
+        $('#upMenu').css({backgroundColor: '#f4f1e7', opacity: '1'});
+        $('#bigButton').css({display: 'none !important;'});
+        $('#upLine').css({opacity: '0'});
+    },100);
+}
+
+function CloseMenu(position){
+    $("body").removeClass('mm-fixed-body');
+    window.scrollTo(0,position);
+    $(".mm-mobile-menu").slideUp(300);
+    $('#logoImg').slideDown('fast');
+    $('#bigButton').css({display: 'block !important;'});
+    $('#upMenu').css({backgroundColor: 'transparent'});
+    $('.top-help-block').css({
+        display: 'block',
+        backgroundColor: '#fff',
+        opacity: '1'
+    });
+    $('#upLine').css({opacity: '1'});
+    setTimeout(function(){
+        $(".mm-open-icon").removeClass('active');
+    },200);
+}
+
+function addHeight() {
+    var h = $(window).height();
+    h = h - $(".mm-container").outerHeight(true);
+    $(".mm-mobile-menu").css('height', h);
+    $(".mm-nav-mobile").css('height', h);
+}
+
+$(function (){
+    var position;
+    $(window).on({
+        'resize':function() {
+            if ($(".mm-open-icon").hasClass('active')) {
+                CloseMenu(position);
+            }
+            addHeight();
+        }
+    });
+    addHeight();
+    $(document).on("click",".mm-open-icon",function(e){
+        e.preventDefault();
+        if (!$(this).hasClass('active')) {
+            position = window.pageYOffset;
+            OpenMenu();
+        }
+        else {
+            CloseMenu(position);
+        }
+    });
+});
+
+
+
+/*slider*/
+var $Slider_counter = $('.header-slider-nav_counter');
+var $HeaderSlider = $('#header-slider');
+$HeaderSlider.on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
+    //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+    var i = (currentSlide ? currentSlide : 0) + 1;
+    $Slider_counter.text(i + '/' + slick.slideCount);
+});
+$HeaderSlider.slick({
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: false,
+    dots: false
+});
+$(".header-slider-nav_left a").click(function(e){
+    e.preventDefault();
+    $HeaderSlider.slick('slickPrev');
+});
+$(".header-slider-nav_right a").click(function(e){
+    e.preventDefault();
+    $HeaderSlider.slick('slickNext');
+});
+
+$('.slider').on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
+    //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+    var i = (currentSlide ? currentSlide : 0) + 1;
+    $Slider_counter.text(i + '/' + slick.slideCount);
+});
+
+$('.slider').slick({
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: false,
+    dots: false
+});
+$(".header-slider-nav_left a").on("click", function(e){
+    e.preventDefault();
+    $parent = $(this).closest(".header-slider-container");
+    $parent.find(".slider").slick('slickPrev');
+});
+$(".header-slider-nav_right a").on("click", function(e){
+    e.preventDefault();
+    $parent = $(this).closest(".header-slider-container");
+    $parent.find(".slider").slick('slickNext');
+});
+
+
+// comments slider
+$("#whyus-section_comments-slider").slick({
+    // adaptiveHeight: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: false,
+    arrows: false,
+    dots: false,
+    fade:true
+});
+$(".whyus-section_comments-nav_left a").click(function(e){
+    e.preventDefault();
+    $("#whyus-section_comments-slider").slick('slickPrev');
+});
+$(".whyus-section_comments-nav_right a").click(function(e){
+    e.preventDefault();
+    $("#whyus-section_comments-slider").slick('slickNext');
+});
+
+});
+</script>
+
+</head>
+<body>
+<nav class="mm-container mm-fixed-top subpage" id="mm-nav">
+    <div class="top-help-block" id="check-user1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="top-help-block-link" id="upLine">
+                        You entered our site as a tourist, 
+                        want <a href="javascript:;">to swich the role?</a> 
+                        <a href="javascript:;" class="top-help-block_close js-top-help-block_close"><i class="icon-btn_cross"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="container" id="upMenu">
+            <div class="mm-container-inside sidepage">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="newID">
+                        <div class="mm-logos-box">
+                            <div class="mm-mobile-open" id="buterId">
+                                <button id="" class="open--mob mm-open-icon cmn-toggle-switch cmn-toggle-switch__htx" style="display: inline-block">
+                                  <span>toggle menu</span>
+                                </button>
+                            </div>
+                            <div class="mm-logos" id="logoImg">
+                                <a href="index.html"></a>
+                            </div>
+                        </div>
+                        <div class="mm-nav-line">
+                            <ul>
+                                <li><a href="ourland.html">Our land</a></li>
+                                <li><a href="emotions.html">Emotions</a></li>
+                                <li><a href="find.html">Find a trip idea</a></li>
+                                <li><a href="inspirations.html">Inspirations</a></li>
+                                <li><a href="about.html">About us</a></li>
+                            </ul>
+                        </div>
+                        <div class="lang-switch">
+                            <ul>
+                                <li class="lang-button"><a href="#" data-toggle="modal" data-target="#langswitch-modal">English</a></li>
+                                <li id="bigButton" class="order-button"><a href="javascript:;">Order an Estimate</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--добавленный контейнер-->
+        <div class="mm-mobile-menu">
+            <div class="mm-nav-mobile">
+                <ul id="pageUl">
+                    <li><a href="ourland.html">Our land</a></li>
+                    <li><a href="emotions.html">Emotions</a></li>
+                    <li><a href="find.html">Find a trip idea</a></li>
+                    <li><a href="inspirations.html">Inspirations</a></li>
+                    <li><a href="about.html">About us</a></li>
+                    <li>
+                        <div class="lang-switch" style="">
+                            <ul>
+                                <li class="lang-button" id=""><a href="#" data-toggle="modal" data-target="#langswitch-modal">English</a></li>
+                                <li class="order-button" id="bigButton2"><a href="javascript:;">Order an Estimate</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div class="footer-contacts_contacts">
+                    <ul>
+                        <li><a href="tel:+74994082033" class="no-border">+7 499 408 20 33</a></li>
+                        <li><a href="mailto:contact@troikatourism.com">contact@troikatourism.com</a></li>
+                    </ul>
+                </div>
+                <div class="">
+                    <div class="footer-contacts_T">
+                        Follow us
+                    </div>
+                    <div class="footer-contacts_social">
+                        <ul>
+                            <li><a href="javascript:;"><i class="icon-btn_twitter"></i></a></li>
+                            <li><a href="javascript:;"><i class="icon-btn_fb"></i></a></li>
+                            <li><a href="javascript:;"><i class="icon-btn_instagram"></i></a></li>
+                            <li><a href="javascript:;"><i class="icon-btn_youtube"></i></a></li>
+                            <li><a href="javascript:;"><i class="icon-btn_vimeo"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="" style="">
+                    <ul>
+                        <li class="lang-button2" id="langButton2"><a href="#" data-toggle="modal" data-target="#langswitch-modal">English</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mm-top-block mobile">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="mm-top-block-container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="sidemenu" id="sidemenu">
+        <ul>
+            <li><a href="#info">Info</a></li>
+            <li><a href="#program">About tour</a></li>
+            <li><a href="#review">Review</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li class="last"><a href="#trips">Trips</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="header header-static">
+    <div class="header-static_bg" style="background-image:url(img/img_baikal_slider.jpg); background-position: center;" class=""></div>
+    <div class="header-fluid-content emotions-open">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-9 col-sm-7 col-md-9 col-lg-7">
+                        <div class="header-slider_item">
+                            <!-- <img src="img/img_map.png" alt=""> -->
+                            <div class="header-slider_item-T">Eastern Siberia: from Oron to Baikal</div>
+                            <a href="#info" class="scrollme">read info about emotion</a>
+                            <a href="#trips" class="scrollme">go to trips</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section class="tour-present outland-page" id="info">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+                <div class="tour-present_stats ourland-stats" id="tourXsLi">
+                    <div class="tour-present_stats-T">
+                        Baikal in figures
+                    </div>
+                    <ul>
+                        <li>27 islands</li>
+                        <li>23,000 cubic km</li>
+                        <li>636 km long</li>
+                        <li>79 km wide</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
+                <div class="tour-present_text">
+                    <p>The famous Lake Baikal is located in Siberia, a region that makes up more than 75% of Russia’s total landmass. Located close to the Mongolian border, Lake Baikal holds a massive amount of water—approximately 20% of all the liquid freshwater reserves on earth—more than any other freshwater lake on the planet!</p>
+                    <p>Travel to Russia is our specialty and our experienced staff will go Lake Baikal, formed 25 million years ago, provides a haven for 1,200 animal species, 600 types of plants, and the world’s only freshwater seals. Of these plants and animals, 75 percent are found only in the Lake Baikal.</p>
+                    <p>Located close to the Mongolian border, Lake Baikal holds a massive amount of water. We are glad to help you in creating your own, perfect tour. You can either request adjustments to one of our standard tours or you can create a totally different itinerary with the help of our Russian travel specialists, this goes for both summer and winter tours.</p>
+                </div>
+            </div>
+            <div class="hidden-xs col-sm-5 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1">
+                <div class="tour-present_stats ourland-stats">
+                    <div class="tour-present_stats-T">
+                        Baikal in figures
+                    </div>
+                    <ul>
+                        <li>27 islands</li>
+                        <li>23,000 cubic km</li>
+                        <li>636 km long</li>
+                        <li>79 km wide</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="longread-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="header-static_bg" style="background-image:url(img/img_our_land-open_001.jpg);">
+                    <!-- <div class="longread-box_img"> -->
+                    <!-- <img src="img/img_our_land-open_001.jpg" alt="" class="img-responsive"> -->
+                </div>
+            </div>
+            <div class="float-box">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-4 col-md-5 col-md-offset-7 col-lg-5 col-lg-offset-7">
+                            <div class="longread-box-introtext">
+                                <p>This beautiful, exceptionally clear lake is home to more endemic species than any other lake in the world. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                    <div class="longread-box-text">
+                        <h4>Baikal is the most beautiful creature</h4>
+                        <p>This beautiful, exceptionally clear lake is home to more endemic species than any other lake in the world. And many of these plants and animals are found nowhere else. Baikal is also the earth’s deepest lake, plunging to more than a mile below the water’s surface in some areas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="longread-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="header-slider-container">
+                    <div class="slider">
+                        <div>
+                            <img src="img/img_our_land-open_002.jpg" class="img-responsive">
+                            <div class="float-box">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-sm-4 col-md-5 col-lg-5 col-lg-offset-7">
+                                            <div class="longread-box-introtext">
+                                                <p>This beautiful, exceptionally clear lake is home to more endemic species than any other lake in the world. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="img/img_our_land-open_006.jpg" class="img-responsive">
+                            <div class="float-box">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-sm-4 col-md-5 col-lg-5 col-lg-offset-7">
+                                            <div class="longread-box-introtext">
+                                                <p>This beautiful, exceptionally clear lake is home to more endemic species than any other lake in the world. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="img/img_our_land-open_001.jpg" class="img-responsive">
+                            <div class="float-box">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-sm-4 col-md-5 col-lg-5 col-lg-offset-7">
+                                            <div class="longread-box-introtext">
+                                                <p>This beautiful, exceptionally clear lake is home to more endemic species than any other lake in the world. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-slider-nav">
+                        <div class="header-slider-nav_left">
+                            <a href="#"></a>
+                        </div>
+                        <div class="header-slider-nav_counter"></div>
+                        <div class="header-slider-nav_right">
+                            <a href="#"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="longread-box-comment">
+                        <div class="longread-box-comment_img">
+                            <img src="img/img_quat_001.jpg" alt="">
+                        </div>
+                        <div class="longread-box-comment_content">
+                            <div class="longread-box-comment_content-name">
+                                Franz Anatol, painter
+                            </div>
+                            <p>„Sometimes one day in a different place gives you more than ten years of life at home sometimes one day in a different place gives you more than ten years of life at home.“</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="longread-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="longread-box_video">
+                    <div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
+                        <iframe allowfullscreen="true" allowscriptaccess="always" src="https://www.youtube.com/embed/mfKCKJOFVLY" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                    <div class="longread-box-text">
+                        <h4>Natural mirror</h4>
+                        <p>This beautiful, exceptionally clear lake is home to more endemic species than any other lake in the world. And many of these plants and animals are found nowhere else. Baikal is also the earth’s deepest lake, plunging to more than a mile below the water’s surface in some areas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="brick-box">
+    <div class="container">
+        <div class="row masonry"data-columns="">
+            <div class="item">
+                <div class="brick-box-text">
+                    <h4>Sometimes one day in a different place gives you more than ten years of life at home</h4>
+                </div>
+            </div>
+            <div class="item">
+                <img src="img/img_our_land-open_004.jpg" alt="" class="img-responsive">
+            </div>
+            <div class="item">
+                <img src="img/img_our_land-open_003.jpg" alt="" class="img-responsive">
+            </div>
+            <div class="item">
+                <img src="img/img_our_land-open_005.jpg" alt="" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+            <div class="longread-box-text">
+                <p>This beautiful, exceptionally clear lake is home to more endemic species than any other lake in the world. And many of these plants and animals are found nowhere else. Baikal is also the earth’s deepest lake, plunging to more than a mile below the water’s surface in some areas.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="longread-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="header-static_bg" style="background-image:url(img/img_our_land-open_006.jpg);">
+                <!-- <div class="longread-box_img"> -->
+                    <!-- <img src="img/img_our_land-open_006.jpg" alt="" class="img-responsive"> -->
+                </div>
+            </div>
+            <div class="float-box">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-4 col-md-5 col-md-offset-7 col-lg-5 col-lg-offset-7">
+                            <div class="longread-box-introtext">
+                                <p>This beautiful, exceptionally clear lake is home to more endemic species than any other lake in the world. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tour-program" id="program">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section_T">
+                    About destination
+                    <i class="icon-ic_flower_4"></i>
+                </div>
+            </div>
+        </div>
+        <div class="row map-sticky-row">
+            <div class="map-sticky-col" id="lgMapContainer">
+                <div class="sticky-map">
+                    <div class="tour-program_map" id="map"></div>
+                    <div class="tour-program_map-attr">
+                        <ul>
+                            <li><i><img src="img/img_map_001.jpg" alt=""></i><span>by train</span></li>
+                            <li><i><img src="img/img_map_002.jpg" alt=""></i><span>by bus</span></li>
+                            <li><i><img src="img/img_map_003.jpg" alt=""></i><span>by airplane</span></li>
+                        </ul>
+                        <ul>
+                            <li><i><img src="img/img_map_004.jpg" alt=""></i><span>by train</span></li>
+                            <li><i><img src="img/img_map_005.jpg" alt=""></i><span>by bus</span></li>
+                            <li><i><img src="img/img_map_006.jpg" alt=""></i><span>by airplane</span></li>
+                        </ul>
+                        <div class="tour-program_map-attr-download">
+                            <a href="javascript:;">Open in modal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-sm-offset-6 col-md-6 col-md-offset-6 col-lg-6 col-lg-offset-6">
+                <div class="tour-program_rightblock">
+                    <div class="letter-box tiny-text">
+                        <img src="img/img_B.png" class="img-responsive">
+                        <div><h4>aikal is one of the world`s clearest and purest lake on the Earth</h4></div>
+                    </div>
+                    <div class="text-box">
+                        <p>Travel to Russia is our specialty and our experienced staff will go Lake Baikal, formed 25 million years ago, provides a haven for 1,200 animal species, 600 types of plants, and the world’s only freshwater seals. Of these plants and animals, 75 percent are found.</p>
+                        <p>We are glad to help you to create your own, perfect tour. You can either request adjustments to one of our standard tours or you can create a totally different itinerary with the help of our Russian travel specialists, this goes for both summer and winter tours to Mother Russia. </p>
+                        <p>Travel to Russia is our specialty and our experienced staff will go the extra yard to make your Russian holidays spectacular. Some of Baikal’s fish can survive more than one mile beneath the surface, despite the incredible water pressure at that depth. They are so well-adapted to these pressures that they will literally explode if brought to the surface, where the pressure is dramatically different. Out of all the animals living in the Lake Baikal, the most interesting are the fresh water seals. We are glad to help you to create your own, perfect tour.</p>
+                        <p>Travel to Russia is our specialty and our experienced staff will goLake Baikal, formed 25 million years ago, provides a haven for 1,200 animal species, 600 types of plants, and the world’s only freshwater seals. Of these plants and animals, 75 percent are found only in the Lake Baikal. We are glad to help you to create your own, perfect tour. You can either request adjustments to one of our standard tours or you can create a totally different itinerary with the help of our Russian travel specialists, this goes for both summer and winter tours. </p>
+                    </div>
+                </div>
+            </div>
+<!--добавленный контейнер карты-->
+            <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+                <div class="map-sticky-col" id="xsMapContainer">
+                    <div class="sticky-map" id="sticky-map">
+                        <div class="tour-program_map" id="smallMap"></div>
+                        <div class="tour-program_map-attr">
+                            <ul>
+                                <li><i><img src="img/img_map_001.jpg" alt=""></i><span>by train</span></li>
+                                <li><i><img src="img/img_map_002.jpg" alt=""></i><span>by bus</span></li>
+                                <li><i><img src="img/img_map_003.jpg" alt=""></i><span>by airplane</span></li>
+                            </ul>
+                            <ul>
+                                <li><i><img src="img/img_map_004.jpg" alt=""></i><span>by train</span></li>
+                                <li><i><img src="img/img_map_005.jpg" alt=""></i><span>by bus</span></li>
+                                <li><i><img src="img/img_map_006.jpg" alt=""></i><span>by airplane</span></li>
+                            </ul>
+                            <div class="tour-program_map-attr-download">
+                                <a href="javascript:;">Open in modal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--конец добавленного контейнера карты-->
+        </div>
+    </div>
+</section>
+
+<section class="tour-comment" id="review">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section_T">
+                    Our clients review
+                    <i class="icon-ic_flower_2"></i>
+                </div>
+            </div>
+        </div>
+        <div class="row whyus-section_comments">
+            <div class="whyus-section_comments-container">
+                <div id="whyus-section_comments-slider">
+
+                    <div>
+                        <div class="whyus-section_comments-slider_item">
+                            <div class="whyus-section_comments-slider-item_img">
+                                <img src="img/img_review_photo_001.jpg">
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3">
+                                <div class="whyus-section_comments-slider-item_content">
+                                    <p>Thank you, I had a totally georgeous time in Russia! I really appreciate your service and have already recommended your agency to friends. For anyone who is having Baikal in their mind to travel with it, just go for it!</p>
+                                    <p>Do not wait! Book your ticket trough arteltroika.com and you will find yourself at Lake Baikal shore within two Months!</p>
+                                    <div class="whyus-section_comments-slider-item_content-footer">
+                                        <i class="icon-ic_flower_7"></i>
+                                        <div class="whyus-section_comments-slider-item_content-footer_T">
+                                            Angela and John Dyke, The UK
+                                        </div>
+                                        <div class="whyus-section_comments-slider-item_content-footer_T-sub">
+                                            Trip to the Lake Baikal and Transsiberian Railway
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="whyus-section_comments-slider_item">
+                            <div class="whyus-section_comments-slider-item_img">
+                                <img src="img/img_review_photo_001.jpg">
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3">
+                                <div class="whyus-section_comments-slider-item_content">
+                                    <p>Thank you, I had a totally georgeous time in Russia! I really appreciate your service and have already recommended your agency to friends. For anyone who is having Baikal in their mind to travel with it, just go for it!</p>
+                                    <p>Do not wait! Book your ticket trough arteltroika.com and you will find yourself at Lake Baikal shore within two Months!</p>
+                                    <div class="whyus-section_comments-slider-item_content-footer">
+                                        <i class="icon-ic_flower_7"></i>
+                                        <div class="whyus-section_comments-slider-item_content-footer_T">
+                                            Angela and John Dyke, The UK
+                                        </div>
+                                        <div class="whyus-section_comments-slider-item_content-footer_T-sub">
+                                            Trip to the Lake Baikal and Transsiberian Railway
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="whyus-section_comments-nav">
+                    <div class="whyus-section_comments-nav-more section_morelink">
+                        <a href="javascript:;">write a review</a>
+                    </div>
+                    <div class="whyus-section_comments-nav_left">
+                        <a href="#"></a>
+                    </div>
+                    <div class="whyus-section_comments-nav_right">
+                        <a href="#"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tour-faq" id="faq">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section_T">
+                    Frequently Asked Questions
+                    <i class="icon-ic_flower_3"></i>
+                </div>
+            </div>
+        </div>
+        <div class="row tour-faq-box">
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+                <div class="tour-faq-spoiler-container js-spoiler-container">
+                    <div class="tour-faq-spoiler-container_link">
+                        <a href="javascript:;" class="js-open-spoiler"><span>Arrival information</span><i class="icon-btn_spoiler_down"></i></a>
+                    </div>
+                    <div class="tour-faq-spoiler-container_box js-spoiler-box">
+                        <div class="tour-faq-spoiler-container_box-T">Do I need travel insurance?</div>
+                        <p>Travel insurance is compulsory for all Intrepid travellers and should be taken out at the time of booking. You must provide proof of your travel insurance on the first day of your trip; you will not be able to join the trip without it.</p>
+                        <div class="tour-faq-spoiler-container_box-T">What does my policy need to cover?</div>
+                        <p>At a minimum, your travel insurance should be 'comprehensive', providing cover against personal accident, death, medical expenses, emergency repatriation and personal liability, with a minimum coverage of 200,000 Euro. We also strongly recommend it covers cancellation, curtailment and loss of luggage and personal effects. If you obtain travel insurance through us you acknowledge that you are satisfied with the level of insurance we have arranged.</p>
+                        <div class="tour-faq-spoiler-container_box-line"></div>
+                    </div>
+                </div>
+                <div class="tour-faq-spoiler-container js-spoiler-container">
+                    <div class="tour-faq-spoiler-container_link">
+                        <a href="javascript:;" class="js-open-spoiler"><span>Visa Information</span><i class="icon-btn_spoiler_down"></i></a>
+                    </div>
+                    <div class="tour-faq-spoiler-container_box js-spoiler-box">
+                        <div class="tour-faq-spoiler-container_box-T">Do I need travel insurance?</div>
+                        <p>Travel insurance is compulsory for all Intrepid travellers and should be taken out at the time of booking. You must provide proof of your travel insurance on the first day of your trip; you will not be able to join the trip without it.</p>
+                        <div class="tour-faq-spoiler-container_box-T">What does my policy need to cover?</div>
+                        <p>At a minimum, your travel insurance should be 'comprehensive', providing cover against personal accident, death, medical expenses, emergency repatriation and personal liability, with a minimum coverage of 200,000 Euro. We also strongly recommend it covers cancellation, curtailment and loss of luggage and personal effects. If you obtain travel insurance through us you acknowledge that you are satisfied with the level of insurance we have arranged. </p>
+                        <div class="tour-faq-spoiler-container_box-line"></div>
+                    </div>
+                </div>
+                <div class="tour-faq-spoiler-container js-spoiler-container">
+                    <div class="tour-faq-spoiler-container_link">
+                        <a href="javascript:;" class="js-open-spoiler"><span>Safety and medical information</span><i class="icon-btn_spoiler_down"></i></a>
+                    </div>
+                    <div class="tour-faq-spoiler-container_box js-spoiler-box">
+                        <div class="tour-faq-spoiler-container_box-T">Do I need travel insurance?</div>
+                        <p>Travel insurance is compulsory for all Intrepid travellers and should be taken out at the time of booking. You must provide proof of your travel insurance on the first day of your trip; you will not be able to join the trip without it.</p>
+                        <div class="tour-faq-spoiler-container_box-T">What does my policy need to cover?</div>
+                        <p>At a minimum, your travel insurance should be 'comprehensive', providing cover against personal accident, death, medical expenses, emergency repatriation and personal liability, with a minimum coverage of 200,000 Euro. We also strongly recommend it covers cancellation, curtailment and loss of luggage and personal effects. If you obtain travel insurance through us you acknowledge that you are satisfied with the level of insurance we have arranged.</p>
+                        <div class="tour-faq-spoiler-container_box-line"></div>
+                    </div>
+                </div>
+                <div class="tour-faq-spoiler-container js-spoiler-container">
+                    <div class="tour-faq-spoiler-container_link">
+                        <a href="javascript:;" class="js-open-spoiler"><span>Travel Insurance</span><i class="icon-btn_spoiler_down"></i></a>
+                    </div>
+                    <div class="tour-faq-spoiler-container_box js-spoiler-box">
+                        <div class="tour-faq-spoiler-container_box-T">Do I need travel insurance?</div>
+                        <p>Travel insurance is compulsory for all Intrepid travellers and should be taken out at the time of booking. You must provide proof of your travel insurance on the first day of your trip; you will not be able to join the trip without it.</p>
+                        <div class="tour-faq-spoiler-container_box-T">What does my policy need to cover?</div>
+                        <p>At a minimum, your travel insurance should be 'comprehensive', providing cover against personal accident, death, medical expenses, emergency repatriation and personal liability, with a minimum coverage of 200,000 Euro. We also strongly recommend it covers cancellation, curtailment and loss of luggage and personal effects. If you obtain travel insurance through us you acknowledge that you are satisfied with the level of insurance we have arranged. </p>
+                        <div class="tour-faq-spoiler-container_box-line"></div>
+                    </div>
+                </div>
+                <div class="tour-faq-spoiler-container js-spoiler-container">
+                    <div class="tour-faq-spoiler-container_link">
+                        <a href="javascript:;" class="js-open-spoiler"><span>Arrival information</span><i class="icon-btn_spoiler_down"></i></a>
+                    </div>
+                    <div class="tour-faq-spoiler-container_box js-spoiler-box">
+                        <div class="tour-faq-spoiler-container_box-T">Do I need travel insurance?</div>
+                        <p>Travel insurance is compulsory for all Intrepid travellers and should be taken out at the time of booking. You must provide proof of your travel insurance on the first day of your trip; you will not be able to join the trip without it.</p>
+                        <div class="tour-faq-spoiler-container_box-T">What does my policy need to cover?</div>
+                        <p>At a minimum, your travel insurance should be 'comprehensive', providing cover against personal accident, death, medical expenses, emergency repatriation and personal liability, with a minimum coverage of 200,000 Euro. We also strongly recommend it covers cancellation, curtailment and loss of luggage and personal effects. If you obtain travel insurance through us you acknowledge that you are satisfied with the level of insurance we have arranged.</p>
+                        <div class="tour-faq-spoiler-container_box-line"></div>
+                    </div>
+                </div>
+                <div class="tour-faq-spoiler-container js-spoiler-container">
+                    <div class="tour-faq-spoiler-container_link">
+                        <a href="javascript:;" class="js-open-spoiler"><span>Visa Information</span><i class="icon-btn_spoiler_down"></i></a>
+                    </div>
+                    <div class="tour-faq-spoiler-container_box js-spoiler-box">
+                        <div class="tour-faq-spoiler-container_box-T">Do I need travel insurance?</div>
+                        <p>Travel insurance is compulsory for all Intrepid travellers and should be taken out at the time of booking. You must provide proof of your travel insurance on the first day of your trip; you will not be able to join the trip without it.</p>
+                        <div class="tour-faq-spoiler-container_box-T">What does my policy need to cover?</div>
+                        <p>At a minimum, your travel insurance should be 'comprehensive', providing cover against personal accident, death, medical expenses, emergency repatriation and personal liability, with a minimum coverage of 200,000 Euro. We also strongly recommend it covers cancellation, curtailment and loss of luggage and personal effects. If you obtain travel insurance through us you acknowledge that you are satisfied with the level of insurance we have arranged. </p>
+                        <div class="tour-faq-spoiler-container_box-line"></div>
+                    </div>
+                </div>
+                <div class="tour-faq-spoiler-container js-spoiler-container">
+                    <div class="tour-faq-spoiler-container_link">
+                        <a href="javascript:;" class="js-open-spoiler"><span>Safety and medical information</span><i class="icon-btn_spoiler_down"></i></a>
+                    </div>
+                    <div class="tour-faq-spoiler-container_box js-spoiler-box">
+                        <div class="tour-faq-spoiler-container_box-T">Do I need travel insurance?</div>
+                        <p>Travel insurance is compulsory for all Intrepid travellers and should be taken out at the time of booking. You must provide proof of your travel insurance on the first day of your trip; you will not be able to join the trip without it.</p>
+                        <div class="tour-faq-spoiler-container_box-T">What does my policy need to cover?</div>
+                        <p>At a minimum, your travel insurance should be 'comprehensive', providing cover against personal accident, death, medical expenses, emergency repatriation and personal liability, with a minimum coverage of 200,000 Euro. We also strongly recommend it covers cancellation, curtailment and loss of luggage and personal effects. If you obtain travel insurance through us you acknowledge that you are satisfied with the level of insurance we have arranged.</p>
+                        <div class="tour-faq-spoiler-container_box-line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tour-faq-box-col">
+                <div class="tour-faq-fluid-box">
+                    <div class="tour-faq-fluid-box-T">
+                        A person who was there and speaks your language:
+                    </div>
+                    <div class="tour-faq-fluid-box-img">
+                        <img src="img/img_photo.png" alt="">
+                    </div>
+                    <div class="tour-faq-fluid-box-name">Anna Morozova</div>
+                    <div class="tour-faq-fluid-box-subname">travel expert</div>
+                    <a href="javascript:;">ask a question</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="trip-section" id="trips">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section_T">
+                    Trips of this land
+                    <i class="icon-ic_flower_3"></i>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                <div class="section_introtext">
+                    <h4>Blessed are the curious, for they shall have adventures or another text</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="find-results-section_item">
+                    <div class="find-results-section_item-img">
+                        <img src="img/img_trip_001.jpg" alt="" class="img-responsive">
+                        <div class="find-results-section_item-img_float-container">
+                            <div class="find-results-section_item-img_float-container-line"></div>
+                            <div class="find-results-section_item-img_float-container-T">
+                                Holy Siberia
+                            </div>
+                        </div>
+                    </div>
+                    <div class="find-results-section_item-content">
+                        <ul>
+                            <li><i class="icon-ic_dur"></i><span>7 days</span></li>
+                            <li><i class="icon-ic_price"></i>
+                                <span>from 1700 € 
+                                <a data-toggle="tooltip" title="price depends on included options" data-placement="right"><i class="icon-ic_info"></i></a>
+                                </span>
+                            </li>
+                            <li><i class="icon-ic_data"></i><span>from November till March</span></li>
+                            <li><i class="icon-ic_loc"></i><span>Barsukovskaya cave, Belovsky waterfall, Ascension Cathedral, Museum Of The Sun, The Great Berchikul Lake</span></li>
+                        </ul>               
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="find-results-section_item">
+                    <div class="find-results-section_item-img">
+                        <img src="img/img_trip_002.jpg" alt="" class="img-responsive">
+                        <div class="find-results-section_item-img_float-container">
+                            <div class="find-results-section_item-img_float-container-line"></div>
+                            <div class="find-results-section_item-img_float-container-T">
+                                Fresh and frozen baikal
+                            </div>
+                        </div>
+                    </div>
+                    <div class="find-results-section_item-content">
+                        <ul>
+                            <li><i class="icon-ic_dur"></i><span>7 days</span></li>
+                            <li><i class="icon-ic_price"></i>
+                                <span>from 1700 € 
+                                <a data-toggle="tooltip" title="price depends on included options" data-placement="right"><i class="icon-ic_info"></i></a>
+                                </span>
+                            </li>
+                            <li><i class="icon-ic_data"></i><span>from November till March</span></li>
+                            <li><i class="icon-ic_loc"></i><span>Barsukovskaya cave, Belovsky waterfall, Ascension Cathedral, Museum Of The Sun, The Great Berchikul Lake</span></li>
+                        </ul>               
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="find-results-section_item">
+                    <div class="find-results-section_item-img">
+                        <img src="img/img_trip_003.jpg" alt="" class="img-responsive">
+                        <div class="find-results-section_item-img_float-container">
+                            <div class="find-results-section_item-img_float-container-line"></div>
+                            <div class="find-results-section_item-img_float-container-T">
+                                Russian Hospitality
+                            </div>
+                        </div>
+                    </div>
+                    <div class="find-results-section_item-content">
+                        <ul>
+                            <li><i class="icon-ic_dur"></i><span>7 days</span></li>
+                            <li><i class="icon-ic_price"></i>
+                                <span>from 1700 € 
+                                <a data-toggle="tooltip" title="price depends on included options" data-placement="right"><i class="icon-ic_info"></i></a>
+                                </span>
+                            </li>
+                            <li><i class="icon-ic_data"></i><span>from November till March</span></li>
+                            <li><i class="icon-ic_loc"></i><span>Barsukovskaya cave, Belovsky waterfall, Ascension Cathedral, Museum Of The Sun, The Great Berchikul Lake</span></li>
+                        </ul>               
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="emotions-section emotions-grid-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section_T">
+                    Similar emotions
+                    <i class="icon-ic_flower_4"></i>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+                <div class="emotions-section_introtext section_introtext">
+                    <h4>From Karelia to the depth of Siberia, get back to nature</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="emotions-grid-wrapper">
+                    <div class="emotions-grid-container">
+                        <div class="emotions-grid-item">
+                            <a href="javascript:;">
+                                <div class="emotions-grid-item_img">
+                                    <img src="img/img_slider_emotions_001.png">
+                                </div>
+                                <div class="emotions-grid-item_T">
+                                    Snowmobile in the Wild Taiga
+                                </div>
+                            </a>
+                        </div>
+                        <div class="emotions-grid-item">
+                            <a href="javascript:;">
+                                <div class="emotions-grid-item_img">
+                                    <img src="img/img_slider_emotions_002.png">
+                                </div>
+                                <div class="emotions-grid-item_T">
+                                    Dogsledding
+                                </div>
+                            </a>
+                        </div>
+                        <div class="emotions-grid-item">
+                            <a href="javascript:;">
+                                <div class="emotions-grid-item_img">
+                                    <img src="img/img_slider_emotions_003.png">
+                                </div>
+                                <div class="emotions-grid-item_T">
+                                    Ride the Legendary Troika
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="footer">
+    <div class="container">
+        <div class="row footer_header">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer_line">
+                    <i class="icon-ic_flower_8"></i>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offest-1 col-lg-6 col-lg-offset-3">
+                <div class="footer_T">
+                    Can`t find what you`re<br>looking for?
+                </div>
+                <div class="footer_T-sub">
+                    Call us on +7 499 408 20 33<br>
+                    or mail to <a href="mailto:contact@troikatourism.com">contact@troikatourism.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+                <div class="footer-contacts_T">
+                    Follow us
+                </div>
+                <div class="footer-contacts_social">
+                    <ul>
+                        <li><a href="javascript:;"><i class="icon-btn_twitter"></i><span>Twitter</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_fb"></i><span>Facebook</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_instagram"></i><span>Instagram</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_youtube"></i><span>Youtube</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_vimeo"></i><span>Vimeo</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                <div class="footer-contacts_T">
+                    Our address
+                </div>
+                <div class="footer-contacts_content">
+                    <p>9 Gazetniy pereulok, stroenie 7, office 44. Moscow, Russia 125009.</p>
+                    <p>Our office is open Monday through Friday from 10 am to 7 pm</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div class="footer-contacts_T">
+                    Contact us
+                </div>
+                <div class="footer-contacts_contacts">
+                    <ul>
+                        <li>Phone: <a href="tel:+74994082033" class="no-border">+7 499 408 20 33</a></li>
+                        <li>E-mail: <a href="mailto:contact@troikatourism.com">contact@troikatourism.com</a></li>
+                        <li>Skype: <a href="skype:live:troikatourism?chat">troikatourism</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-7 col-md-5 col-lg-4">
+                <div class="footer-contacts_T">
+                    Subscribe to our newsletter:
+                </div>
+                <div class="footer-contacts_form-T">
+                    <p>Subscribe if you want to receive interesting news and offers from our company.</p>
+                </div>
+                <div class="footer-contacts_form">
+                    <form action="" method="" class="base-form">
+                        <div class="form-group float-group">
+                            <input type="email" class="form-control" id="" required name="email" placeholder="enter your email address">
+                        </div>
+                        <div class="form-group float-group margin-left">
+                            <button type="submit">subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer_line last"><i class="icon-ic_flower_9"></i></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-lg-offset-3">
+                <div class="footer_copy">
+                    © TROIKA LLC Incoming Russian tour operator, United Federal Register of Tour Operators number: MBT 006215.
+                </div>
+                <div class="footer_province">
+                    Desingned in <a href="http://provincestudio.ru" title="Desingned in Province" target="_blank">Province</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_7noLMCvuTbZQgG9Rdp_cS-NY4tub69U&callback=initMap">
+</script>
+<script src="js/salvattore.min.js"></script>
+<script src="js/demo.js"></script>
+<script src="js/slick.js"></script>
+</body>
+</html>

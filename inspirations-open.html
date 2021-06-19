@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="true" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="css/media.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/massive-menu.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" href="css/demo.css">
+<link href='https://fonts.googleapis.com/css?family=PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/custom.js"></script>
+<!-- <script src="js/slick.js"></script> -->
+<script src="js/jquery.cookie.js"></script>
+<script src="js/jquery.sticky-kit.min.js"></script>
+<script src="js/jquery.custom-scroll.js"></script>
+<script src="js/massive-menu.js"></script>
+<title>Artel Troika - Inspirations Open</title>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+/*menu*/
+
+// $(window).on({
+//     'load':function() {
+//         stickyAffix();
+//         stickyMap();
+//     },
+//     'scroll':function() {
+//         var top = $(this).scrollTop();
+//         if(top > 1) {
+//             $(".mm-container").addClass('scrolled');
+//             //$(".top-help-block-link").stop().slideUp(200);
+//         } 
+//         else {
+//             $(".mm-container").removeClass('scrolled');
+//             //$(".top-help-block-link").stop().slideDown(200);
+//         }
+//     }
+// });
+
+$(window).scroll(function(){
+    var params = new Object();
+    params.docH = $(document).height();
+    params.winH = $(window).height();
+    params.scrollTop = $(this).scrollTop();
+    params.checkSum = params.scrollTop + params.winH;
+    if(parseInt(params.scrollTop) > 0){
+        $('#upLine').slideUp('fast');
+    }else{
+        $('#upLine').slideDown('fast');
+    }
+});
+
+// function Autoscroll(param){
+//     var w = $(window).width();
+//     var mm_nav_h;
+//     $('body,html').animate({ scrollTop: $(param).offset().top - 100}, 1000); // анимируем скроолинг к элементу scroll_el
+// }
+
+// $(function (){
+//     var position;
+//     $(window).on({
+//         'resize':function() {
+//             if ($(".mm-open-icon").hasClass('active')) {
+//                 CloseMenu(position);
+//             }
+//             addHeight();
+//         }
+//     });
+//     addHeight();
+//     $(document).on("click",".mm-open-icon",function(e){ 
+//         e.preventDefault();
+//         if (!$(this).hasClass('active')) {
+//             position = window.pageYOffset;
+//             OpenMenu();
+//         }
+//         else {
+//             CloseMenu(position);
+//         }
+//     });
+// });
+
+// function OpenMenu(){
+//     $(".mm-mobile-menu").slideDown(300);
+//     setTimeout(function(){
+//         $("body").addClass('mm-fixed-body');
+//         $(".mm-open-icon").addClass('active');
+//         $('#logoImg').slideUp('fast');
+//         $('.top-help-block').css({display: 'none'});
+//         $('#langButton2').css({display: 'block'});
+//         $('#upMenu').css({backgroundColor: '#f4f1e7', opacity: '1'});
+//         $('#bigButton').css({display: 'none !important;'});
+//         $('#upLine').css({opacity: '0'});
+//     },100);
+// }
+
+// function CloseMenu(position){
+//     $("body").removeClass('mm-fixed-body');
+//     window.scrollTo(0,position);
+//     $(".mm-mobile-menu").slideUp(300);
+//     $('#logoImg').slideDown('fast');
+//     $('#bigButton').css({display: 'block !important;'});
+//     $('#upMenu').css({backgroundColor: 'transparent'});
+//     $('.top-help-block').css({
+//         display: 'block',
+//         backgroundColor: '#fff',
+//         opacity: '1'
+//     });
+//     $('#upLine').css({opacity: '1'});
+//     setTimeout(function(){
+//         $(".mm-open-icon").removeClass('active');
+//     },200);
+// }
+
+// function addHeight() {
+//     var h = $(window).height();
+//     h = h - $(".mm-container").outerHeight(true);
+//     $(".mm-mobile-menu").css('height', h);
+//     $(".mm-nav-mobile").css('height', h);
+// }
+
+
+// $(function (){
+//     var position;
+//     $(window).on({
+//         'resize':function() {
+//             if ($(".mm-open-icon").hasClass('active')) {
+//                 CloseMenu(position);
+//             }
+//             addHeight();
+//         }
+//     });
+//     addHeight();
+//     $(document).on("click",".mm-open-icon",function(e){
+//         e.preventDefault();
+//         if (!$(this).hasClass('active')) {
+//             position = window.pageYOffset;
+//             OpenMenu();
+//         }
+//         else {
+//             CloseMenu(position);
+//         }
+//     });
+// });
+
+/*slider*/
+
+    var $Slider_counter = $('.header-slider-nav_counter');
+    var $HeaderSlider = $('#header-slider');
+    $HeaderSlider.on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
+        //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+        var i = (currentSlide ? currentSlide : 0) + 1;
+        $Slider_counter.text(i + '/' + slick.slideCount);
+    });
+    $HeaderSlider.slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        arrows: false,
+        dots: false
+    });
+    $(".header-slider-nav_left a").click(function(e){
+        e.preventDefault();
+        $HeaderSlider.slick('slickPrev');
+    });
+    $(".header-slider-nav_right a").click(function(e){
+        e.preventDefault();
+        $HeaderSlider.slick('slickNext');
+    });
+
+    $('.slider').on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
+        //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+        var i = (currentSlide ? currentSlide : 0) + 1;
+        $Slider_counter.text(i + '/' + slick.slideCount);
+    });
+
+    $('.slider').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        arrows: false,
+        dots: false
+    });
+    $(".header-slider-nav_left a").on("click", function(e){
+        e.preventDefault();
+        $parent = $(this).closest(".header-slider-container");
+        $parent.find(".slider").slick('slickPrev');
+    });
+    $(".header-slider-nav_right a").on("click", function(e){
+        e.preventDefault();
+        $parent = $(this).closest(".header-slider-container");
+        $parent.find(".slider").slick('slickNext');
+    });
+    // emotions slider
+    // $("#emotions-section_slider").slick({
+    //  infinite: false,
+    //  slidesToShow: 5,
+    //  slidesToScroll: 1,
+    //  autoplay: false,
+    //  arrows: true,
+    //  dots: false,
+    //  speed: 250
+    // });
+    $('#emotions-section_slider').slick({
+      dots: false,
+      infinite: false,
+      speed: 250,
+      autoplay: false,
+      arrows: true,
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1,
+          }
+        },
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+    
+    $('#emotions-section_slider2').slick({
+      dots: false,
+      infinite: false,
+      speed: 250,
+      autoplay: false,
+      arrows: true,
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+            // slidesToScroll: 1
+          }
+        }
+        // You can unslick at a given breakpoint now by adding:
+        // settings: "unslick"
+        // instead of a settings object
+      ]
+    });
+    
+    $(document).on('click mouseenter', '.slick-arrow.slick-disabled', function(e) {
+        $(this).animateCss('jello');
+    });
+    // comments slider
+    $("#whyus-section_comments-slider").slick({
+        // adaptiveHeight: true,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: false,
+        arrows: false,
+        dots: false,
+        fade:true
+    });
+    $(".whyus-section_comments-nav_left a").click(function(e){
+        e.preventDefault();
+        $("#whyus-section_comments-slider").slick('slickPrev');
+    });
+    $(".whyus-section_comments-nav_right a").click(function(e){
+        e.preventDefault();
+        $("#whyus-section_comments-slider").slick('slickNext');
+    });
+
+
+
+});
+
+</script>
+<style>
+    @media all and (max-width: 767px) {
+        #trips {
+            margin-top: 20px;
+        }
+    }
+    @media all and (max-width: 500px) {
+        .find-results-section_item {
+            height: 430px !important;
+        }
+        #trips {
+            margin-bottom: 0px;
+        }
+    }
+    @media all and (max-width: 400px) {
+        .header-static_T {
+            margin-top: -60px !important;
+            width: 320px !important;
+        }
+    }
+</style>
+
+</head>
+<body>
+<nav class="mm-container mm-fixed-top subpage" id="mm-nav">
+    <div class="top-help-block" id="check-user1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="top-help-block-link" id="upLine">
+                        You entered our site as a tourist, 
+                        want <a href="javascript:;">to swich the role?</a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="upMenu">
+        <div class="mm-container-inside">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="newID">
+                    <div class="mm-logos-box">
+                        <div class="mm-mobile-open" id="buterId">
+                            <button id="" class="open--mob mm-open-icon cmn-toggle-switch cmn-toggle-switch__htx" style="display: inline-block">
+                              <span>toggle menu</span>
+                            </button>
+                        </div>
+                        <div class="mm-logos" id="logoImg">
+                            <a href="index.html"></a>
+                        </div>
+                    </div>
+                    <div class="mm-nav-line">
+                        <ul>
+                            <li><a href="ourland.html">Our land</a></li>
+                            <li><a href="emotions.html">Emotions</a></li>
+                            <li><a href="find.html">Find a trip idea</a></li>
+                            <li><a href="inspirations.html">Inspirations</a></li>
+                            <li><a href="about.html">About us</a></li>
+                        </ul>
+                    </div>
+                    <div class="lang-switch">
+                        <ul>
+                            <li class="lang-button"><a href="#" data-toggle="modal" data-target="#langswitch-modal">English</a></li>
+                            <li id="bigButton" class="order-button"><a href="javascript:;">Order an Estimate</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mm-mobile-menu">
+        <div class="mm-nav-mobile">
+            <ul id="pageUl">
+                <li><a href="ourland.html">Our land</a></li>
+                <li><a href="emotions.html">Emotions</a></li>
+                <li><a href="find.html">Find a trip idea</a></li>
+                <li><a href="inspirations.html">Inspirations</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li>
+                    <div class="lang-switch" style="">
+                        <ul>
+                            <li class="lang-button" id=""><a href="#" data-toggle="modal" data-target="#langswitch-modal">English</a></li>
+                            <li class="order-button" id="bigButton2"><a href="javascript:;">Order an Estimate</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div class="footer-contacts_contacts">
+                <ul>
+                    <li><a href="tel:+74994082033" class="no-border">+7 499 408 20 33</a></li>
+                    <li><a href="mailto:contact@troikatourism.com">contact@troikatourism.com</a></li>
+                </ul>
+            </div>
+            <div class="">
+                <div class="footer-contacts_T">
+                    Follow us
+                </div>
+                <div class="footer-contacts_social">
+                    <ul>
+                        <li><a href="javascript:;"><i class="icon-btn_twitter"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_fb"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_instagram"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_youtube"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_vimeo"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="" style="">
+                <ul>
+                    <li class="lang-button2" id="langButton2"><a href="#" data-toggle="modal" data-target="#langswitch-modal">English</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mm-top-block mobile">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="mm-top-block-container">
+                                 <div class="lang-switch" id="twice">
+                                <ul>
+                                    <li class="lang-button"><a href="#" data-toggle="modal" data-target="#langswitch-modal">English</a></li>
+                                    <li class="order-button" id="bigButton2"><a href="javascript:;">Order an Estimate</a></li>
+                                </ul>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="header header-static">
+    <div class="header-static_bg height500" style="background-image:url(img/img_slider_002.jpg);"></div>
+    <div class="header-static_T">
+        <h4>Travelling in Russia is about living a multitude of different emotions. Choose yours. Your journey must be unique!</h4>
+        <i class="icon-ic_flower_6"></i>
+    </div>
+</section>
+
+<section class="blogpage-section">
+    <div class="container">
+        <div class="row article" style="margin-bottom: 10px;">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="letter-box tiny-text">
+                    <p>Baikal is one of the world`s clearest and purest lake on the Earth</p>
+                </div>
+            </div>
+            <!-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="text-box no-margin">
+                    <p>We are glad to help you to create your own, perfect tour. You can either request adjustments to one of our standard tours or you can create a totally different itinerary with the help of our Russian travel specialists, this goes for both summer and winter tours to Mother Russia. </p>
+                    <p>Travel to Russia is our specialty and our experienced staff will go the extra yard to make your Russian holidays spectacular. Some of Baikal’s fish can survive more than one mile beneath the surface, despite the incredible water pressure at that depth. They are so well-adapted to these pressures that they will literally explode if brought to the surface, where the pressure is dramatically different. Out of all the animals living in the Lake Baikal, the most interesting are the fresh water seals. We are glad to help you to create your own, perfect tour.</p>
+                </div>
+            </div> -->
+        </div>
+        <div class="row article">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="text-box no-margin">
+                    <p>We are glad to help you to create your own, perfect tour. You can either request adjustments to one of our standard tours or you can create a totally different itinerary with the help of our Russian travel specialists, this goes for both summer and winter tours to Mother Russia. </p>
+                    <p>Travel to Russia is our specialty and our experienced staff will go the extra yard to make your Russian holidays spectacular. Some of Baikal’s fish can survive more than one mile beneath the surface, despite the incredible water pressure at that depth. They are so well-adapted to these pressures that they will literally explode if brought to the surface, where the pressure is dramatically different. Out of all the animals living in the Lake Baikal, the most interesting are the fresh water seals. We are glad to help you to create your own, perfect tour.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row article">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="img_our_land-open"></div>
+                <!-- <img src="img/img_our_land-open_002.jpg" alt="" class="img-responsive"> -->
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="blogpage-section-img_annotation">
+                    <p>Travel to Russia is our specialty and our experienced staff will go the extra yard to make your Russian holidays spectacular. Some of Baikal’s fish can survive more than one mile beneath the surface.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row article">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="text-box no-margin">
+                    <p>We are glad to help you to create your own, perfect tour. You can either request adjustments to one of our standard tours or you can create a totally different itinerary with the help of our Russian travel specialists, this goes for both summer and winter tours to Mother Russia. </p>
+                    <p>Travel to Russia is our specialty and our experienced staff will go the extra yard to make your Russian holidays spectacular. Some of Baikal’s fish can survive more than one mile beneath the surface, despite the incredible water pressure at that depth. They are so well-adapted to these pressures that they will literally explode if brought to the surface, where the pressure is dramatically different. Out of all the animals living in the Lake Baikal, the most interesting are the fresh water seals. We are glad to help you to create your own, perfect tour.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row article">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="header-slider-container">
+                    <div id="header-slider">
+                        <div>
+                            <img src="img/img_slider_001.jpg" class="img-responsive">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="header-slider_item">
+<!--                                             <div class="header-slider_item-T">
+                                                Two capitals of Russia: from Moscow to St. Petersburg
+                                            </div> -->
+                                            <div class="header-slider_item-T-sub" style="margin-top: -80px;">
+                                                The best choice to explore two different Russias: Ancient capital Moscow and splendid St. Petersburg with its palaces and cathedrals.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="img/img_slider_002.jpg" class="img-responsive">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="header-slider_item">
+<!--                                             <div class="header-slider_item-T">
+                                                Two capitals of Russia: from Moscow to St. Petersburg
+                                            </div> -->
+                                            <div class="header-slider_item-T-sub">
+                                                The best choice to explore two different Russias: Ancient capital Moscow and splendid St. Petersburg with its palaces and cathedrals.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="img/img_slider_001.jpg" class="img-responsive">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="header-slider_item">
+<!--                                             <div class="header-slider_item-T">
+                                                Two capitals of Russia: from Moscow to St. Petersburg
+                                            </div> -->
+                                            <div class="header-slider_item-T-sub">
+                                                The best choice to explore two different Russias: Ancient capital Moscow and splendid St. Petersburg with its palaces and cathedrals.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-slider-nav">
+                        <div class="header-slider-nav_left">
+                            <a href="#"></a>
+                        </div>
+                        <div class="header-slider-nav_counter"></div>
+                        <div class="header-slider-nav_right">
+                            <a href="#"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row article">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="text-box no-margin">
+                    <p>We are glad to help you to create your own, perfect tour. You can either request adjustments to one of our standard tours or you can create a totally different itinerary with the help of our Russian travel specialists, this goes for both summer and winter tours to Mother Russia. </p>
+                    <p>Travel to Russia is our specialty and our experienced staff will go the extra yard to make your Russian holidays spectacular. Some of Baikal’s fish can survive more than one mile beneath the surface, despite the incredible water pressure at that depth. They are so well-adapted to these pressures that they will literally explode if brought to the surface, where the pressure is dramatically different. Out of all the animals living in the Lake Baikal, the most interesting are the fresh water seals. We are glad to help you to create your own, perfect tour.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row article">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="img_our_land-open2"></div>
+                <!-- <img src="img/img_our_land-open_002.jpg" alt="" class="img-responsive"> -->
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="blogpage-section-img_annotation">
+                    <p>Travel to Russia is our specialty and our experienced staff will go the extra yard to make your Russian holidays spectacular. Some of Baikal’s fish can survive more than one mile beneath the surface.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row article small-margin">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="text-box no-margin">
+                    <p>We are glad to help you to create your own, perfect tour. You can either request adjustments to one of our standard tours or you can create a totally different itinerary with the help of our Russian travel specialists, this goes for both summer and winter tours to Mother Russia. </p>
+                </div>
+            </div>
+        </div>
+        <div class="row article small-margin">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+                <div class="blogpage-section-comment_content">
+                    <div class="blogpage-section-comment_content-name">
+                        Franz Anatol, painter
+                    </div>
+                    <p>„Sometimes one day in a different place gives you more than ten years of life at home sometimes one day in a different place gives you more than ten years of life at home.“</p>
+                </div>
+            </div>
+        </div>
+        <div class="row article small-margin">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="text-box no-margin">
+                    <p>We are glad to help you to create your own, perfect tour. You can either request adjustments to one of our standard tours or you can create a totally different itinerary with the help of our Russian travel specialists, this goes for both summer and winter tours to Mother Russia. </p>
+                    <p>Travel to Russia is our specialty and our experienced staff will go the extra yard to make your Russian holidays spectacular. Some of Baikal’s fish can survive more than one mile beneath the surface, despite the incredible water pressure at that depth. They are so well-adapted to these pressures that they will literally explode if brought to the surface, where the pressure is dramatically different. Out of all the animals living in the Lake Baikal, the most interesting are the fresh water seals. We are glad to help you to create your own, perfect tour.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="share-block">
+                    <div class="share-block-T">Share:</div>
+                    <ul>
+                        <li><a href="javascript:;"><i class="icon-btn_twitter"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_fb"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_instagram"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_youtube"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_vimeo"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="trip-section" id="trips">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section_T">
+                    Trips you may like
+                    <i class="icon-ic_flower_3"></i>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                <div class="section_introtext">
+                    <h4>Blessed are the curious, for they shall have adventures or another text</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="find-results-section_item">
+                    <div class="find-results-section_item-img">
+                        <img src="img/img_trip_001.jpg" alt="" class="img-responsive">
+                        <div class="find-results-section_item-img_float-container">
+                            <div class="find-results-section_item-img_float-container-line"></div>
+                            <div class="find-results-section_item-img_float-container-T">
+                                Holy Siberia
+                            </div>
+                        </div>
+                    </div>
+                    <div class="find-results-section_item-content">
+                        <ul>
+                            <li><i class="icon-ic_dur"></i><span>7 days</span></li>
+                            <li><i class="icon-ic_price"></i>
+                                <span>from 1700 € 
+                                <a data-toggle="tooltip" title="price depends on included options" data-placement="right"><i class="icon-ic_info"></i></a>
+                                </span>
+                            </li>
+                            <li><i class="icon-ic_data"></i><span>from November till March</span></li>
+                            <li><i class="icon-ic_loc"></i><span>Barsukovskaya cave, Belovsky waterfall, Ascension Cathedral, Museum Of The Sun, The Great Berchikul Lake</span></li>
+                        </ul>               
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="find-results-section_item">
+                    <div class="find-results-section_item-img">
+                        <img src="img/img_trip_002.jpg" alt="" class="img-responsive">
+                        <div class="find-results-section_item-img_float-container">
+                            <div class="find-results-section_item-img_float-container-line"></div>
+                            <div class="find-results-section_item-img_float-container-T">
+                                Fresh and frozen baikal
+                            </div>
+                        </div>
+                    </div>
+                    <div class="find-results-section_item-content">
+                        <ul>
+                            <li><i class="icon-ic_dur"></i><span>7 days</span></li>
+                            <li><i class="icon-ic_price"></i>
+                                <span>from 1700 € 
+                                <a data-toggle="tooltip" title="price depends on included options" data-placement="right"><i class="icon-ic_info"></i></a>
+                                </span>
+                            </li>
+                            <li><i class="icon-ic_data"></i><span>from November till March</span></li>
+                            <li><i class="icon-ic_loc"></i><span>Barsukovskaya cave, Belovsky waterfall, Ascension Cathedral, Museum Of The Sun, The Great Berchikul Lake</span></li>
+                        </ul>               
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="blog-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section_T">
+                    Another articles
+                    <i class="icon-ic_flower_4"></i>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+                <div class="blog-section_introtext section_introtext">
+                    <h4>We are constantly searching for new itineraries and share useful insights. Let us inspire you.</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="blog-section_item">
+                    <a href="javascript:;">
+                        <img src="img/img_our_land_001.jpg" class="img-responsive">
+                        <div class="blog-section_item-bg"></div>
+                        <div class="blog-section_item-box">
+                            <div class="blog-section_item-box_content">
+                                <img src="img/img_inspirations_001.png">
+                                <p>Trans-Siberian Railway: Best Cities to Visit</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="blog-section_item">
+                    <a href="javascript:;">
+                        <img src="img/img_our_land_002.jpg" class="img-responsive">
+                        <div class="blog-section_item-bg"></div>
+                        <div class="blog-section_item-box">
+                            <div class="blog-section_item-box_content">
+                                <img src="img/img_inspirations_002.png">
+                                <p>Museum of Russian Wooden Architecture</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="hidden-xs hidden-sm hidden-md col-lg-4">
+                <div class="blog-section_item">
+                    <a href="javascript:;">
+                        <img src="img/img_our_land_001.jpg" class="img-responsive">
+                        <div class="blog-section_item-bg"></div>
+                        <div class="blog-section_item-box">
+                            <div class="blog-section_item-box_content">
+                                <img src="img/img_inspirations_001.png">
+                                <p>The Most Famous Bridges of Saint Petersburg</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="footer">
+    <div class="container">
+        <div class="row footer_header">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer_line">
+                    <i class="icon-ic_flower_8"></i>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-6offest-1 col-lg-6 col-lg-offset-3">
+                <div class="footer_T">
+                    Can`t find what you`re<br>looking for?
+                </div>
+                <div class="footer_T-sub">
+                    Call us on +7 499 408 20 33<br>
+                    or mail to <a href="mailto:contact@troikatourism.com">contact@troikatourism.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+                <div class="footer-contacts_T">
+                    Follow us
+                </div>
+                <div class="footer-contacts_social">
+                    <ul>
+                        <li><a href="javascript:;"><i class="icon-btn_twitter"></i><span>Twitter</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_fb"></i><span>Facebook</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_instagram"></i><span>Instagram</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_youtube"></i><span>Youtube</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_vimeo"></i><span>Vimeo</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                <div class="footer-contacts_T">
+                    Our address
+                </div>
+                <div class="footer-contacts_content">
+                    <p>9 Gazetniy pereulok, stroenie 7, office 44. Moscow, Russia 125009.</p>
+                    <p>Our office is open Monday through Friday from 10 am to 7 pm</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div class="footer-contacts_T">
+                    Contact us
+                </div>
+                <div class="footer-contacts_contacts">
+                    <ul>
+                        <li>Phone: <a href="tel:+74994082033" class="no-border">+7 499 408 20 33</a></li>
+                        <li>E-mail: <a href="mailto:contact@troikatourism.com">contact@troikatourism.com</a></li>
+                        <li>Skype: <a href="skype:live:troikatourism?chat">troikatourism</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-7 col-md-5 col-lg-4">
+                <div class="footer-contacts_T">
+                    Subscribe to our newsletter:
+                </div>
+                <div class="footer-contacts_form-T">
+                    <p>Subscribe if you want to receive interesting news and offers from our company.</p>
+                </div>
+                <div class="footer-contacts_form">
+                    <form action="" method="" class="base-form">
+                        <div class="form-group float-group">
+                            <input type="email" class="form-control" id="" required name="email" placeholder="enter your email address">
+                        </div>
+                        <div class="form-group float-group margin-left">
+                            <button type="submit">subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer_line last"><i class="icon-ic_flower_9"></i></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-lg-offset-3">
+                <div class="footer_copy">
+                    © TROIKA LLC Incoming Russian tour operator, United Federal Register of Tour Operators number: MBT 006215.
+                </div>
+                <div class="footer_province">
+                    Desingned in <a href="http://provincestudio.ru" title="Desingned in Province" target="_blank">Province</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="js/demo.js"></script>
+<script src="js/slick.js"></script>
+</body>
+</html>

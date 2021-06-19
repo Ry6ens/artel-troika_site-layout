@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="true" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="css/media.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" href="css/demo.css">
+<link rel="stylesheet" type="text/css" href="css/massive-menu.css">
+<link href='https://fonts.googleapis.com/css?family=PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/slick.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/jquery.sticky-kit.min.js"></script>
+<script src="js/jquery.custom-scroll.js"></script>
+<script src="js/massive-menu.js"></script>
+<script src="js/data-img.js"></script>
+<title>Artel Troika - Our land</title>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('.data-img').dataImg({
+      xsm: 630,
+      sml: 767,
+      med: 1199,
+      lrg: 1200,
+      resize: true
+    });
+
+
+    $(window).on({
+        'load':function() {
+            stickyAffix();
+            stickyMap();
+        },
+        'scroll':function() {
+            var top = $(this).scrollTop();
+            if(top > 1) {
+                $(".mm-container").addClass('scrolled');
+                //$(".top-help-block-link").stop().slideUp(200);
+            } 
+            else {
+                $(".mm-container").removeClass('scrolled');
+                //$(".top-help-block-link").stop().slideDown(200);
+            }
+        }
+    });
+
+    
+    $(window).scroll(function(){
+        var params = new Object();
+        params.docH = $(document).height();
+        params.winH = $(window).height();
+        params.scrollTop = $(this).scrollTop();
+        params.checkSum = params.scrollTop + params.winH;
+        //console.log(params);
+        if(parseInt(params.scrollTop) > 0){
+            //console.log('Страница была прокручена от начала');
+            $('#upLine').slideUp('fast');
+        }else{
+            //console.log('Смещение = 0');
+            $('#upLine').slideDown('fast');
+        }
+    });
+});
+
+</script>
+
+</head>
+
+<body>
+<nav class="mm-container mm-fixed-top subpage" id="mm-nav">
+    <div class="top-help-block" id="check-user1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="top-help-block-link" id="upLine">
+                        You entered our site as a tourist, 
+                        want <a href="javascript:;">to swich the role?</a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="upMenu">
+        <div class="mm-container-inside">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="newID">
+                    <div class="mm-logos-box">
+                        <div class="mm-mobile-open" id="buterId">
+                            <button id="" class="open--mob mm-open-icon cmn-toggle-switch cmn-toggle-switch__htx" style="display: inline-block">
+                              <span>toggle menu</span>
+                            </button>
+                        </div>
+                        <div class="mm-logos" id="logoImg">
+                            <a href="index.html"></a>
+                        </div>
+                    </div>
+                    <div class="mm-nav-line">
+                        <ul>
+                            <li><a href="ourland.html">Our land</a></li>
+                            <li><a href="emotions.html">Emotions</a></li>
+                            <li><a href="find.html">Find a trip idea</a></li>
+                            <li><a href="inspirations.html">Inspirations</a></li>
+                            <li><a href="about.html">About us</a></li>
+                        </ul>
+                    </div>
+                    <div class="lang-switch">
+                        <ul>
+                            <li class="lang-button"><a href="#" data-toggle="modal" data-target="#langswitch-modal">English</a></li>
+                            <li id="bigButton" class="order-button"><a href="javascript:;">Order an Estimate</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mm-mobile-menu">
+        <div class="mm-nav-mobile">
+            <ul id="pageUl">
+                <li><a href="ourland.html">Our land</a></li>
+                <li><a href="emotions.html">Emotions</a></li>
+                <li><a href="find.html">Find a trip idea</a></li>
+                <li><a href="inspirations.html">Inspirations</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li>
+                    <div class="lang-switch" style="">
+                        <ul>
+                            <li class="lang-button" id=""><a href="#" data-toggle="modal" data-target="#langswitch-modal">English</a></li>
+                            <li class="order-button" id="bigButton2"><a href="javascript:;">Order an Estimate</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div class="footer-contacts_contacts">
+                <ul>
+                    <li><a href="tel:+74994082033" class="no-border">+7 499 408 20 33</a></li>
+                    <li><a href="mailto:contact@troikatourism.com">contact@troikatourism.com</a></li>
+                </ul>
+            </div>
+            <div class="">
+                <div class="footer-contacts_T">
+                    Follow us
+                </div>
+                <div class="footer-contacts_social">
+                    <ul>
+                        <li><a href="javascript:;"><i class="icon-btn_twitter"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_fb"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_instagram"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_youtube"></i></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_vimeo"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="" style="">
+                <ul>
+                    <li class="lang-button2" id="langButton2"><a href="#" data-toggle="modal" data-target="#langswitch-modal">English</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mm-top-block mobile">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="mm-top-block-container">
+<!--                             <div class="lang-switch" id="twice">
+                                <ul>
+                                    <li class="lang-button"><a href="#" data-toggle="modal" data-target="#langswitch-modal">English</a></li>
+                                    <li class="order-button" id="bigButton2"><a href="javascript:;">Order an Estimate</a></li>
+                                </ul>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<section class="header header-static">
+    <div class="header-static_bg height500" style="background-image:url(img/img_slider_002.jpg);"></div>
+    <div class="header-static_T">
+        <h4>Travelling in Russia is about living a multitude of different emotions. Choose yours. Your journey must be unique!</h4>
+        <i class="icon-ic_flower_6"></i>
+    </div>
+</section>
+
+<section class="mainpage-section our-land">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section_T">
+                    Historical russia
+                    <i class="icon-ic_flower_3"></i>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+                <div class="our-land_introtext section_introtext">
+                    <h4>It`s so beautiful that sometimes we regret that it doesn`t last all the year round as some people believe</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="our-land_grid-item">
+                    <a href="javascript:;">
+                        <div class="our-land_grid-item_img">
+                            <img src="img/img_our_land_001.jpg" class="img-responsive">
+                        </div>
+                        <div class="our-land_grid-item_T">
+                            moscow
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="our-land_grid-item">
+                    <a href="javascript:;">
+                        <div class="our-land_grid-item_img">
+                            <img src="img/img_our_land_002.jpg" class="img-responsive">
+                        </div>
+                        <div class="our-land_grid-item_T">
+                            St. Petersburg
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="our-land_grid-item">
+                    <a href="javascript:;">
+                        <div class="our-land_grid-item_img">
+                            <img src="img/img_our_land_003.jpg" class="img-responsive">
+                        </div>
+                        <div class="our-land_grid-item_T">
+                            golden ring
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="our-land_grid-item">
+                    <a href="javascript:;">
+                        <div class="our-land_grid-item_img">
+                            <img src="img/img_our_land_004.jpg" class="img-responsive">
+                        </div>
+                        <div class="our-land_grid-item_T">
+                            baikal
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="our-land_grid-item">
+                    <a href="javascript:;">
+                        <div class="our-land_grid-item_img">
+                            <img src="img/img_our_land_005.jpg" class="img-responsive">
+                        </div>
+                        <div class="our-land_grid-item_T">
+                            TransSiberian Railway
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mainpage-section our-land">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section_T">
+                    Winter Fun
+                    <i class="icon-ic_flower_3"></i>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+                <div class="our-land_introtext section_introtext">
+                    <h4>It`s so beautiful that sometimes we regret that it doesn`t last all the year round as some people believe</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="our-land_grid-item">
+                    <a href="javascript:;">
+                        <div class="our-land_grid-item_img">
+                            <img src="img/img_our_land_001.jpg" class="img-responsive">
+                        </div>
+                        <div class="our-land_grid-item_T">
+                            moscow
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="our-land_grid-item">
+                    <a href="javascript:;">
+                        <div class="our-land_grid-item_img">
+                            <img src="img/img_our_land_002.jpg" class="img-responsive">
+                        </div>
+                        <div class="our-land_grid-item_T">
+                            St. Petersburg
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="our-land_grid-item">
+                    <a href="javascript:;">
+                        <div class="our-land_grid-item_img">
+                            <img src="img/img_our_land_003.jpg" class="img-responsive">
+                        </div>
+                        <div class="our-land_grid-item_T">
+                            golden ring
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mainpage-section our-land">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section_T">
+                    Shoping Expedition
+                    <i class="icon-ic_flower_3"></i>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+                <div class="our-land_introtext section_introtext">
+                    <h4>It`s so beautiful that sometimes we regret that it doesn`t last all the year round as some people believe</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="our-land_grid-item">
+                    <a href="javascript:;">
+                        <div class="our-land_grid-item_img">
+                            <img src="img/img_our_land_001.jpg" class="img-responsive">
+                        </div>
+                        <div class="our-land_grid-item_T">
+                            moscow
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="our-land_grid-item">
+                    <a href="javascript:;">
+                        <div class="our-land_grid-item_img">
+                            <img src="img/img_our_land_002.jpg" class="img-responsive">
+                        </div>
+                        <div class="our-land_grid-item_T">
+                            St. Petersburg
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="our-land_grid-item">
+                    <a href="javascript:;">
+                        <div class="our-land_grid-item_img">
+                            <img src="img/img_our_land_003.jpg" class="img-responsive">
+                        </div>
+                        <div class="our-land_grid-item_T">
+                            golden ring
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="footer">
+    <div class="container">
+        <div class="row footer_header">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer_line">
+                    <i class="icon-ic_flower_8"></i>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offest-1 col-lg-6 col-lg-offset-3">
+                <div class="footer_T">
+                    Can`t find what you`re<br>looking for?
+                </div>
+                <div class="footer_T-sub">
+                    Call us on +7 499 408 20 33<br>
+                    or mail to <a href="mailto:contact@troikatourism.com">contact@troikatourism.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
+                <div class="footer-contacts_T">
+                    Follow us
+                </div>
+                <div class="footer-contacts_social">
+                    <ul>
+                        <li><a href="javascript:;"><i class="icon-btn_twitter"></i><span>Twitter</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_fb"></i><span>Facebook</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_instagram"></i><span>Instagram</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_youtube"></i><span>Youtube</span></a></li>
+                        <li><a href="javascript:;"><i class="icon-btn_vimeo"></i><span>Vimeo</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-3">
+                <div class="footer-contacts_T">
+                    Our address
+                </div>
+                <div class="footer-contacts_content">
+                    <p>9 Gazetniy pereulok, stroenie 7, office 44. Moscow, Russia 125009.</p>
+                    <p>Our office is open Monday through Friday from 10 am to 7 pm</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div class="footer-contacts_T">
+                    Contact us
+                </div>
+                <div class="footer-contacts_contacts">
+                    <ul>
+                        <li>Phone: <a href="tel:+74994082033" class="no-border">+7 499 408 20 33</a></li>
+                        <li>E-mail: <a href="mailto:contact@troikatourism.com">contact@troikatourism.com</a></li>
+                        <li>Skype: <a href="skype:live:troikatourism?chat">troikatourism</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-7 col-md-5 col-lg-4">
+                <div class="footer-contacts_T">
+                    Subscribe to our newsletter:
+                </div>
+                <div class="footer-contacts_form-T">
+                    <p>Subscribe if you want to receive interesting news and offers from our company.</p>
+                </div>
+                <div class="footer-contacts_form">
+                    <form action="" method="" class="base-form">
+                        <div class="form-group float-group">
+                            <input type="email" class="form-control" id="" required name="email" placeholder="enter your email address">
+                        </div>
+                        <div class="form-group float-group margin-left">
+                            <button type="submit">subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer_line last"><i class="icon-ic_flower_9"></i></div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-lg-offset-3">
+                <div class="footer_copy">
+                    © TROIKA LLC Incoming Russian tour operator, United Federal Register of Tour Operators number: MBT 006215.
+                </div>
+                <div class="footer_province">
+                    Desingned in <a href="http://provincestudio.ru" title="Desingned in Province" target="_blank">Province</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

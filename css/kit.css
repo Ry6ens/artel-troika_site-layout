@@ -1,0 +1,332 @@
+/* Layouts */
+/* FONTS */
+@font-face {
+  font-family: 'ArtelWebFont';
+  src: url('../fonts/circe/Circe-ExtraBold.ttf') format('truetype'), url('../fonts/circe/Circe-ExtraBold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Conv_P Troika';
+  src: url('../fonts/troika/P Troika.ttf') format('truetype'), url('../fonts/troika/P Troika.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'icomoon';
+  src: url('../fonts/icomoon.ttf?j14z3v') format('truetype'), url('../fonts/icomoon.woff?j14z3v') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-btn_radio_001:before {
+  content: "\e905";
+}
+.icon-btn_radio_002:before {
+  content: "\e906";
+}
+.icon-btn_radio_003:before {
+  content: "\e907";
+}
+.icon-btn_minus_001:before {
+  content: "\e908";
+}
+.icon-btn_plus_001:before {
+  content: "\e909";
+}
+.icon-btn_minus_002:before {
+  content: "\e90a";
+}
+.icon-btn_plus_002:before {
+  content: "\e90b";
+}
+.icon-btn_cross_for_modals:before {
+  content: "\e90c";
+}
+.icon-btn_cross_small:before {
+  content: "\e904";
+}
+.icon-ic_download:before {
+  content: "\e903";
+}
+.icon-ic_tick:before {
+  content: "\e902";
+}
+.icon-ic_checkbox_001:before {
+  content: "\e900";
+}
+.icon-ic_checkbox_002:before {
+  content: "\e901";
+}
+.icon-ic_app:before {
+  content: "\e919";
+}
+.icon-ic_food:before {
+  content: "\e91a";
+}
+.icon-ic_data:before {
+  content: "\e91b";
+}
+.icon-ic_loc:before {
+  content: "\e91c";
+}
+.icon-ic_dur:before {
+  content: "\e91d";
+}
+.icon-ic_price:before {
+  content: "\e91f";
+}
+.icon-ic_info:before {
+  content: "\e920";
+}
+.icon-ic_flower_1:before {
+  content: "\e921";
+}
+.icon-ic_flower_2:before {
+  content: "\e922";
+}
+.icon-ic_flower_3:before {
+  content: "\e923";
+}
+.icon-ic_flower_4:before {
+  content: "\e924";
+}
+.icon-ic_flower_5:before {
+  content: "\e925";
+}
+.icon-ic_flower_6:before {
+  content: "\e926";
+}
+.icon-btn_slider_prev_1:before {
+  content: "\e927";
+}
+.icon-btn_slider_next_1:before {
+  content: "\e928";
+}
+.icon-btn_slider_prev_2:before {
+  content: "\e929";
+}
+.icon-btn_slider_next_2:before {
+  content: "\e92a";
+}
+.icon-btn_cross:before {
+  content: "\e92b";
+}
+.icon-btn_spoiler_up:before {
+  content: "\e92c";
+}
+.icon-btn_spoiler_down:before {
+  content: "\e92d";
+}
+.icon-ic_flower_7:before {
+  content: "\e92e";
+}
+.icon-ic_flower_8:before {
+  content: "\e92f";
+}
+.icon-ic_flower_9:before {
+  content: "\e930";
+}
+.icon-btn_twitter:before {
+  content: "\e931";
+}
+.icon-btn_fb:before {
+  content: "\e932";
+}
+.icon-btn_instagram:before {
+  content: "\e933";
+}
+.icon-btn_youtube:before {
+  content: "\e934";
+}
+.icon-btn_vimeo:before {
+  content: "\e935";
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+.fonts-r46,
+.fonts-h1,
+h1 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.22;
+  font-size: 46px;
+}
+.fonts-i46,
+.fonts-h2,
+h2 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.22;
+  font-size: 46px;
+}
+.fonts-b38 {
+  font-family: 'ArtelWebFont';
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.26;
+  font-size: 38px;
+  letter-spacing: 2px;
+}
+.fonts-r36,
+.fonts-h3,
+h3 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.28;
+  font-size: 36px;
+}
+.fonts-i36,
+.fonts-h4,
+h4 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.28;
+  font-size: 36px;
+}
+.fonts-s1 {
+  font-family: 'ArtelWebFont';
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.33;
+  font-size: 30px;
+}
+.fonts-s2 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.47;
+  font-size: 30px;
+}
+.fonts-s3 {
+  font-family: 'ArtelWebFont';
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.2;
+  font-size: 20px;
+}
+.fonts-b18,
+.fonts-s4 {
+  font-family: 'ArtelWebFont';
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.44;
+  font-size: 18px;
+}
+.fonts-s5 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.44;
+  font-size: 18px;
+}
+.fonts-s6 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.44;
+  font-size: 18px;
+}
+.fonts-b16,
+.fonts-c1 {
+  font-family: 'ArtelWebFont';
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.38;
+  font-size: 16px;
+}
+.fonts-r16,
+.fonts-b1 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.62;
+  font-size: 16px;
+}
+.fonts-i16,
+.fonts-b2 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.62;
+  font-size: 16px;
+}
+.fonts-c2 {
+  font-family: 'ArtelWebFont';
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.46;
+  font-size: 15px;
+}
+.fonts-r14,
+.fonts-b3 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.57;
+  font-size: 14px;
+}
+.fonts-b13,
+.fonts-c3 {
+  font-family: 'ArtelWebFont';
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.77;
+  font-size: 13px;
+}
+.fonts-i13,
+.fonts-c4 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.77;
+  font-size: 13px;
+}
+.fonts-r12,
+.fonts-d1 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.83;
+  font-size: 12px;
+}
+.fonts-i12,
+.fonts-d2 {
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.83;
+  font-size: 12px;
+}
